@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import Link from 'next/link';
-import toast, { Toaster } from 'react-hot-toast';
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function ProductDetailsPage() {
   const params = useParams();
@@ -18,30 +18,32 @@ export default function ProductDetailsPage() {
 
   const fetchProduct = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/products/${params.id}`);
+      const response = await fetch(
+        `https://my-shop-app-server.onrender.com/api/products/${params.id}`,
+      );
       if (response.ok) {
         const data = await response.json();
         setProduct(data);
       } else {
-        toast.error('❌ Product not found');
-        setTimeout(() => router.push('/products'), 2000);
+        toast.error("❌ Product not found");
+        setTimeout(() => router.push("/products"), 2000);
       }
       setLoading(false);
     } catch (error) {
-      toast.error('❌ Failed to load product');
+      toast.error("❌ Failed to load product");
       setLoading(false);
     }
   };
 
   const handleAddToCart = () => {
     toast.success(`✅ Added ${quantity} item(s) to cart!`, {
-      icon: '🛒',
+      icon: "🛒",
       duration: 3000,
     });
   };
 
   const handleBuyNow = () => {
-    toast.success('🚀 Redirecting to checkout...', {
+    toast.success("🚀 Redirecting to checkout...", {
       duration: 2000,
     });
   };
@@ -62,7 +64,9 @@ export default function ProductDetailsPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">😢</div>
-          <h2 className="text-2xl font-bold text-gray-700">Product Not Found</h2>
+          <h2 className="text-2xl font-bold text-gray-700">
+            Product Not Found
+          </h2>
         </div>
       </div>
     );
@@ -71,7 +75,7 @@ export default function ProductDetailsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-16">
       <Toaster position="top-right" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <div className="mb-8">
@@ -110,10 +114,10 @@ export default function ProductDetailsPage() {
               <h1 className="text-4xl font-extrabold text-gray-900 mb-4">
                 {product.name}
               </h1>
-              
+
               <div className="flex items-center mb-6">
                 <div className="flex text-yellow-400 text-xl">
-                  {'⭐'.repeat(5)}
+                  {"⭐".repeat(5)}
                 </div>
                 <span className="ml-3 text-gray-600">(128 reviews)</span>
               </div>
@@ -143,10 +147,10 @@ export default function ProductDetailsPage() {
                 </h3>
                 <ul className="space-y-2">
                   {[
-                    'Premium quality materials',
-                    'Free shipping on orders over $50',
-                    '30-day money-back guarantee',
-                    '1-year warranty included'
+                    "Premium quality materials",
+                    "Free shipping on orders over $50",
+                    "30-day money-back guarantee",
+                    "1-year warranty included",
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center text-gray-700">
                       <span className="text-green-500 mr-3 text-xl">✓</span>
@@ -201,15 +205,21 @@ export default function ProductDetailsPage() {
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <div className="text-3xl mb-2">🚚</div>
-                    <p className="text-sm text-gray-600 font-semibold">Free Delivery</p>
+                    <p className="text-sm text-gray-600 font-semibold">
+                      Free Delivery
+                    </p>
                   </div>
                   <div>
                     <div className="text-3xl mb-2">🔒</div>
-                    <p className="text-sm text-gray-600 font-semibold">Secure Payment</p>
+                    <p className="text-sm text-gray-600 font-semibold">
+                      Secure Payment
+                    </p>
                   </div>
                   <div>
                     <div className="text-3xl mb-2">↩️</div>
-                    <p className="text-sm text-gray-600 font-semibold">Easy Returns</p>
+                    <p className="text-sm text-gray-600 font-semibold">
+                      Easy Returns
+                    </p>
                   </div>
                 </div>
               </div>

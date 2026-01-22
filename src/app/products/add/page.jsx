@@ -1,85 +1,99 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { auth } from '@/lib/auth';
-import toast, { Toaster } from 'react-hot-toast';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { auth } from "@/lib/auth";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function AddProductPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    price: '',
-    image: '',
-    category: 'Electronics'
+    name: "",
+    description: "",
+    price: "",
+    image: "",
+    category: "Electronics",
   });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Check if user is logged in
     if (!auth.isAuthenticated()) {
-      toast.error('⚠️ Please login first!');
-      setTimeout(() => router.push('/login'), 1500);
+      toast.error("⚠️ Please login first!");
+      setTimeout(() => router.push("/login"), 1500);
     }
   }, [router]);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validation
-    if (!formData.name || !formData.description || !formData.price || !formData.image) {
-      toast.error('❌ Please fill all fields!');
+    if (
+      !formData.name ||
+      !formData.description ||
+      !formData.price ||
+      !formData.image
+    ) {
+      toast.error("❌ Please fill all fields!");
       return;
     }
 
     if (parseFloat(formData.price) <= 0) {
-      toast.error('❌ Price must be greater than 0!');
+      toast.error("❌ Price must be greater than 0!");
       return;
     }
 
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/products', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        "https://my-shop-app-server.onrender.com/api/products",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...formData,
+            price: parseFloat(formData.price),
+          }),
         },
-        body: JSON.stringify({
-          ...formData,
-          price: parseFloat(formData.price)
-        })
-      });
+      );
 
       if (response.ok) {
-        toast.success('✅ Product added successfully!');
+        toast.success("✅ Product added successfully!");
         setTimeout(() => {
-          router.push('/products');
+          router.push("/products");
         }, 1500);
       } else {
-        toast.error('❌ Failed to add product');
+        toast.error("❌ Failed to add product");
       }
     } catch (error) {
-      toast.error('❌ Error: ' + error.message);
+      toast.error("❌ Error: " + error.message);
     } finally {
       setLoading(false);
     }
   };
 
-  const categories = ['Electronics', 'Accessories', 'Fashion', 'Home & Garden', 'Sports'];
+  const categories = [
+    "Electronics",
+    "Accessories",
+    "Fashion",
+    "Home & Garden",
+    "Sports",
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
       <Toaster position="top-right" />
-      
+
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="text-center mb-10">
@@ -161,7 +175,8 @@ export default function AddProductPage() {
                     alt="Preview"
                     className="w-full h-64 object-cover"
                     onError={(e) => {
-                      e.target.src = 'https://via.placeholder.com/400x300?text=Invalid+Image+URL';
+                      e.target.src =
+                        "https://via.placeholder.com/400x300?text=Invalid+Image+URL";
                     }}
                   />
                 </div>
@@ -191,7 +206,7 @@ export default function AddProductPage() {
             <div className="flex gap-4 pt-4">
               <button
                 type="button"
-                onClick={() => router.push('/products')}
+                onClick={() => router.push("/products")}
                 className="flex-1 bg-gray-200 text-gray-800 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-300 transition"
               >
                 ← Cancel
@@ -200,10 +215,10 @@ export default function AddProductPage() {
                 type="submit"
                 disabled={loading}
                 className={`flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition shadow-lg ${
-                  loading ? 'opacity-50 cursor-not-allowed' : ''
+                  loading ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >
-                {loading ? '⏳ Adding...' : '✅ Add Product'}
+                {loading ? "⏳ Adding..." : "✅ Add Product"}
               </button>
             </div>
           </form>
@@ -211,7 +226,9 @@ export default function AddProductPage() {
 
         {/* Tips Card */}
         <div className="mt-8 bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
-          <h3 className="font-bold text-lg text-blue-900 mb-3">💡 Tips for Adding Products</h3>
+          <h3 className="font-bold text-lg text-blue-900 mb-3">
+            💡 Tips for Adding Products
+          </h3>
           <ul className="space-y-2 text-blue-800">
             <li className="flex items-start">
               <span className="mr-2">✓</span>
