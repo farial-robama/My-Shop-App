@@ -34,7 +34,9 @@ export default function Navbar() {
   const handleLogout = () => {
     auth.logout();
     setIsLoggedIn(false);
-    toast.success('Logged out successfully');
+    toast.success('Logged out successfully', {
+    duration: 6000, 
+    });
     router.push('/');
     setIsMobileMenuOpen(false);
   };
