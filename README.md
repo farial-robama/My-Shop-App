@@ -174,15 +174,12 @@ POST   /api/auth/logout      // User logout
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
-
-This project is licensed under the MIT License.
 
 ## 👨‍💻 Developer
 
-**Name**
+**Name: Farial Robama**
 
-- GitHub: [@farial-robama](https://github.com/farial-robama)
+- GitHub: [farial-robama](https://github.com/farial-robama)
 - Email: farialrobama15@gmail.com
 
 ## 🙏 Acknowledgments
