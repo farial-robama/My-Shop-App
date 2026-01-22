@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { auth } from "@/lib/auth";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export default function AddProductPage() {
   const router = useRouter();
@@ -92,7 +92,7 @@ export default function AddProductPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
-      <Toaster position="top-right" />
+      
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}

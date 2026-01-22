@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { auth } from '@/lib/auth';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -119,7 +119,7 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 py-12 px-4">
-      <Toaster position="top-right" />
+     
       
       <div className="max-w-md mx-auto">
         {/* Header */}
@@ -202,7 +202,7 @@ export default function SignupPage() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
                 >
-                  {showPassword ? '🙈' : '👁️'}
+                  {showPassword ? '🚫' : '👁️'}
                 </button>
               </div>
               {errors.password && (

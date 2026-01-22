@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -49,7 +49,7 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12">
-      <Toaster position="top-right" />
+      
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}

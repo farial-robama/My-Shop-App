@@ -35,7 +35,7 @@ export default function Navbar() {
     auth.logout();
     setIsLoggedIn(false);
     toast.success('Logged out successfully', {
-    duration: 6000, 
+    duration: 3000, 
     });
     router.push('/');
     setIsMobileMenuOpen(false);
@@ -178,3 +178,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+
